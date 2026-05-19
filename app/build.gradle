@@ -8,8 +8,8 @@ version = '1.0-SNAPSHOT'
 
 sonar {
     properties {
-        property 'sonar.projectKey", "Constantine72_qa-auto-engineer-java-project-78'
-        property 'sonar.organization", "constantine72"'
+        property 'sonar.projectKey', 'Constantine72_qa-auto-engineer-java-project-78'
+        property 'sonar.organization', 'constantine72'
     }
 }
 
