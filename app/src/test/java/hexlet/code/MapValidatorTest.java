@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
@@ -45,5 +46,48 @@ public class MapValidatorTest {
         schema.sizeof(5).sizeof(1);
 
         assertTrue(schema.isValid(data));
+    }
+    @Test
+    void testShapeValidationWithExtraConstraints() {
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+
+        schemas.put("firstName", v.string().required());
+        schemas.put("lastName", v.string().required().minLength(2));
+
+        schemas.put("secretCode", v.string().required().contains("VIP"));
+
+        schema.shape(schemas);
+
+        Map<String, String> human1 = new HashMap<>();
+        human1.put("firstName", "John");
+        human1.put("lastName", "Smith");
+        human1.put("secretCode", "MY_VIP_pass");
+
+        assertTrue(schema.isValid(human1));
+
+        Map<String, String> human2 = new HashMap<>();
+        human2.put("firstName", "John");
+        human2.put("lastName", null);
+        human2.put("secretCode", "MY_VIP_pass");
+
+        assertFalse(schema.isValid(human2));
+
+        Map<String, String> human3 = new HashMap<>();
+        human3.put("firstName", "Anna");
+        human3.put("lastName", "B");
+        human3.put("secretCode", "MY_VIP_pass");
+
+        assertFalse(schema.isValid(human3));
+
+        Map<String, String> human4 = new HashMap<>();
+        human1.put("firstName", "Anna");
+        human1.put("lastName", "Smith");
+        human1.put("secretCode", "MY_pass");
+
+        assertFalse(schema.isValid(human4));
+
     }
 }
