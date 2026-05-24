@@ -36,4 +36,3 @@ jacocoTestReport {
         xml.required = true
     }
 }
-//dummy comment for quality gate
