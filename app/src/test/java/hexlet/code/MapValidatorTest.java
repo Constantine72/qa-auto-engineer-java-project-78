@@ -3,12 +3,13 @@ package hexlet.code;
 import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
 import org.junit.jupiter.api.Test;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MapValidatorTest {
+class MapValidatorTest {
 
     @Test
     void testMapValidation() {
@@ -35,6 +36,7 @@ public class MapValidatorTest {
 
         assertTrue(schema.isValid(data));
     }
+
     @Test
     void testSizeOfOverwriting() {
         Validator v = new Validator();
@@ -47,12 +49,13 @@ public class MapValidatorTest {
 
         assertTrue(schema.isValid(data));
     }
+
     @Test
     void testShapeValidationWithExtraConstraints() {
         Validator v = new Validator();
         MapSchema schema = v.map();
 
-        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        Map<String, BaseSchema> schemas = new HashMap<>();
 
         schemas.put("firstName", v.string().required());
         schemas.put("lastName", v.string().required().minLength(2));

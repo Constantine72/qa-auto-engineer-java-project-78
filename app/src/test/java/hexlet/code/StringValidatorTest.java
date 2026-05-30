@@ -2,9 +2,10 @@ package hexlet.code;
 
 import hexlet.code.schemas.StringSchema;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ValidatorTest {
+class StringValidatorTest {
 
     @Test
     void testRequiredValidation() {
@@ -21,17 +22,19 @@ public class ValidatorTest {
 
         assertTrue(schema.isValid("hexlet"));
     }
+
     @Test
     void testContainsValidation() {
         Validator v = new Validator();
         StringSchema schema = v.string();
 
-      assertTrue(schema.contains("wh").isValid("what does the fox say"));
-      assertTrue(schema.contains("what").isValid("what does the fox say"));
+        assertTrue(schema.contains("wh").isValid("what does the fox say"));
+        assertTrue(schema.contains("what").isValid("what does the fox say"));
 
-      assertFalse(schema.contains("whatthe").isValid("what does the fox say"));
-      assertFalse(schema.isValid("what does the fox say"));
+        assertFalse(schema.contains("whatthe").isValid("what does the fox say"));
+        assertFalse(schema.isValid("what does the fox say"));
     }
+
     @Test
     void testMinLengthValidation() {
         Validator v = new Validator();
@@ -41,6 +44,7 @@ public class ValidatorTest {
 
         assertFalse(schema1.minLength(10).isValid("Hexlet"));
     }
+
     @Test
     void testChainedRules() {
         Validator v = new Validator();

@@ -2,9 +2,10 @@ package hexlet.code;
 
 import hexlet.code.schemas.NumberSchema;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class NumberValidatorTest {
+class NumberValidatorTest {
 
     @Test
     void testNumberValidation() {
