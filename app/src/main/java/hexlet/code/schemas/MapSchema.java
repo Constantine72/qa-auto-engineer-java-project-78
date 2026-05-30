@@ -16,12 +16,12 @@ public class MapSchema extends BaseSchema<Map<?, ?>> {
         return this;
     }
 
-    public MapSchema shape(Map<String, BaseSchema> schemas) {
+    public MapSchema shape(Map<String, ? extends BaseSchema> schemas) {
         addCheck("shape", value -> {
             if (value == null) {
                 return true;
             }
-            for (Map.Entry<String, BaseSchema> entry : schemas.entrySet()) {
+            for (Map.Entry<String, ? extends BaseSchema> entry : schemas.entrySet()) {
                 String key = entry.getKey();
                 BaseSchema rule = entry.getValue();
 
